@@ -18,9 +18,12 @@
       </TableView>
    </center>
    <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="61.0" prefWidth="595.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="85.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="85.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/consulta.png" />
+               </image></ImageView>
             <MenuBar>
               <menus>
                 <Menu mnemonicParsing="false" text="Ventanas">
@@ -46,4 +49,7 @@
          </BorderPane.margin>
       </HBox>
    </top>
+   <bottom>
+      <Label text="ClientDesk 2026" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>
