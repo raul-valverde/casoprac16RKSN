@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="120.20001375675201" text="Nombre Completo" />
+          <TableColumn prefWidth="92.39995574951172" text="Tipo de Cliente" />
+            <TableColumn prefWidth="60.5999755859375" text="Ciudad" />
+            <TableColumn prefWidth="124.60003662109375" text="Fecha de Nacimiento" />
+            <TableColumn prefWidth="111.20001220703125" text="Tipo de Solicitud" />
+        </columns>
+      </TableView>
+   </center>
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="85.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true" />
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="Ventanas">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Principal" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About us" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+</BorderPane>
