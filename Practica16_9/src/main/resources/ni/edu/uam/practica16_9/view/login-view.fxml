@@ -1,14 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
+<HBox prefHeight="400.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ni.edu.uam.practica16_9.controller.LoginController">
+    <children>
+        <!-- Panel Lateral Izquierdo -->
+        <VBox alignment="CENTER" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #0F172A;">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <children>
+                <Label text="UAM" textFill="#F8FAFC">
+                    <font>
+                        <Font name="System Bold" size="32.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" text="Registro &amp; Consulta" textAlignment="CENTER" textFill="#94A3B8" wrapText="true">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
 
-</AnchorPane>
+        <!-- Panel de Formulario Derecho -->
+        <VBox alignment="CENTER_LEFT" prefWidth="350.0" spacing="15.0" style="-fx-background-color: #FFFFFF;">
+            <padding>
+                <Insets bottom="30.0" left="35.0" right="35.0" top="30.0" />
+            </padding>
+            <children>
+                <Label text="Iniciar Sesión" textFill="#0F172A">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+
+                <VBox spacing="5.0">
+                    <children>
+                        <Label text="Usuario" textFill="#475569" />
+                        <TextField fx:id="txtUsuario" promptText="Usuario del sistema" />
+                    </children>
+                </VBox>
+
+                <VBox spacing="5.0">
+                    <children>
+                        <Label text="Contraseña" textFill="#475569" />
+                        <PasswordField fx:id="txtPassword" onKeyPressed="#onKeyPressedPassword" promptText="Contraseña" />
+                    </children>
+                </VBox>
+
+                <VBox spacing="10.0">
+                    <children>
+                        <Button maxWidth="360.0" onAction="#onIniciarSesionClick" prefHeight="33.0" prefWidth="360.0" style="-fx-background-color: #0F172A; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Ingresar" VBox.vgrow="ALWAYS">
+                            <padding>
+                                <Insets bottom="8.0" top="8.0" />
+                            </padding>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </VBox>
+                  <Button maxWidth="293.0" onAction="#onSalirClick" prefHeight="36.0" prefWidth="293.0" style="-fx-background-color: transparent; -fx-border-color: #CBD5E1; -fx-text-fill: #475569; -fx-cursor: hand;" text="Salir de la aplicación">
+                      <padding>
+                          <Insets bottom="8.0" top="8.0" />
+                      </padding>
+                  </Button>
+            </children>
+        </VBox>
+    </children>
+</HBox>
