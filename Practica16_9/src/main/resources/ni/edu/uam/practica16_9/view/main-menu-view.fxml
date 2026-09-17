@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- Cambia la propiedad fx:controller por MainMenuController -->
+<BorderPane prefHeight="450.0" prefWidth="650.0" onKeyPressed="#onKeyPressedEsc" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ni.edu.uam.practica16_9.controller.MainMenuController">
+    <top>
+        <VBox spacing="5.0" BorderPane.alignment="CENTER">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu text="Navegación">
+                            <items>
+                                <MenuItem text="Registro de Cliente" onAction="#irRegistro" />
+                                <MenuItem text="Consulta de Clientes" onAction="#irConsulta" />
+                            </items>
+                        </Menu>
+                        <Menu text="Herramientas">
+                            <items>
+                                <MenuItem text="Seleccionar Carpeta" onAction="#seleccionarCarpeta" />
+                            </items>
+                        </Menu>
+                        <Menu text="Sesión">
+                            <items>
+                                <MenuItem text="Cerrar Sesión" onAction="#cerrarSesion" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+
+                <!-- 2. ToolBar requerido -->
+                <ToolBar>
+                    <items>
+                        <Button text=" Registrar Cliente" onAction="#irRegistro" />
+                        <Button text=" Consultar Clientes" onAction="#irConsulta" />
+                        <Button text=" Elegir Carpeta" onAction="#seleccionarCarpeta" />
+                        <Button text=" Salir" onAction="#cerrarSesion" />
+                    </items>
+                </ToolBar>
+            </children>
+        </VBox>
+    </top>
+    <center>
+
+        <VBox alignment="CENTER" spacing="15.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <children>
+                <Label text="Bienvenido al Sistema de Gestión de Clientes" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                <Label fx:id="lblEstadoCarpeta" text="Ninguna carpeta seleccionada" style="-fx-font-style: italic; -fx-text-fill: #555555;" />
+
+                <VBox alignment="CENTER" prefHeight="120.0" prefWidth="350.0" style="-fx-border-color: #cccccc; -fx-border-dash-array: 5; -fx-background-color: #f9f9f9;" onMouseClicked="#onPanelClicked">
+                    <children>
+                        <Label text="Haz clic derecho sobre este recuadro" style="-fx-font-weight: bold;" />
+                        <Label text="para desplegar el ContextMenu" />
+                    </children>
+
+                    <contextMenu>
+                        <ContextMenu>
+                            <items>
+                                <MenuItem text="Mostrar Información del Sistema" onAction="#mostrarInfoContextual" />
+                            </items>
+                        </ContextMenu>
+                    </contextMenu>
+                </VBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
