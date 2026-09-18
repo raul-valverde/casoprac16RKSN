@@ -8,10 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import ni.edu.uam.practica16_9.appplication.MainApp;
@@ -25,12 +28,26 @@ public class MainMenuController {
     @FXML
     private Label lblEstadoCarpeta;
 
+    @FXML
+    private VBox panelContextual;
 
+    @FXML
+    public void initialize() {
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem itemInfo = new MenuItem("Mostrar Información del Sistema");
+        itemInfo.setOnAction(this::mostrarInfoContextual);
+        contextMenu.getItems().add(itemInfo);
+
+        if (panelContextual != null) {
+            panelContextual.setOnContextMenuRequested(event ->
+                    contextMenu.show(panelContextual, event.getScreenX(), event.getScreenY())
+            );
+        }
+    }
 
     @FXML
     private void irRegistro(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
         MainApp.cambiarVentana(stage, "/ni/edu/uam/practica16_9/view/registro-view.fxml", "Registro de Cliente");
     }
 
@@ -53,8 +70,6 @@ public class MainMenuController {
         }
     }
 
-
-
     @FXML
     private void seleccionarCarpeta(ActionEvent event) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -76,8 +91,6 @@ public class MainMenuController {
         }
     }
 
-
-
     @FXML
     private void mostrarInfoContextual(ActionEvent event) {
         Alert dialog = new Alert(Alert.AlertType.INFORMATION);
@@ -86,8 +99,6 @@ public class MainMenuController {
         dialog.setContentText("Has activado la acción del ContextMenu asociada al panel de la pantalla principal.");
         dialog.showAndWait();
     }
-
-
 
     @FXML
     private void onPanelClicked(MouseEvent event) {
@@ -117,8 +128,6 @@ public class MainMenuController {
             }
         }
     }
-
-
 
     private void cambiarVentana(ActionEvent event, String fxmlPath, String titulo) {
         Node source = (Node) event.getSource();
