@@ -9,6 +9,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.Period;
 
 public class RegistroController {
 
@@ -76,29 +78,63 @@ public class RegistroController {
 
     @FXML
     public void guardarRegistro(ActionEvent event) {
-        // 1. Validación original
+
         if (txtNombres.getText().trim().isEmpty() || txtApellidos.getText().trim().isEmpty() ||
                 cmbTipoCliente.getValue() == null || cmbCiudad.getValue() == null) {
 
             Alert alertaError = new Alert(Alert.AlertType.ERROR);
             alertaError.setTitle("Error de Validación");
             alertaError.setHeaderText(null);
-            alertaError.setContentText("Por favor, complete todos los campos obligatorios.");
+            alertaError.setContentText("Por favor, complete todos los campos obligatorios (Nombres, Apellidos, Tipo, Ciudad).");
             alertaError.showAndWait();
             return;
         }
 
-        // 2. Recopilar servicios seleccionados
+
+        LocalDate fechaSeleccionada = dpFechaNacimiento.getValue();
+
+
+        if (fechaSeleccionada == null) {
+            Alert alertaError = new Alert(Alert.AlertType.ERROR);
+            alertaError.setTitle("Error de Validación");
+            alertaError.setHeaderText(null);
+            alertaError.setContentText("Por favor, seleccione su fecha de nacimiento.");
+            alertaError.showAndWait();
+            return;
+        }
+
+
+        if (fechaSeleccionada.isAfter(LocalDate.now())) {
+            Alert alertaError = new Alert(Alert.AlertType.ERROR);
+            alertaError.setTitle("Error de Validación");
+            alertaError.setHeaderText(null);
+            alertaError.setContentText("La fecha de nacimiento no puede ser una fecha futura.");
+            alertaError.showAndWait();
+            return;
+        }
+
+
+        int edad = Period.between(fechaSeleccionada, LocalDate.now()).getYears();
+        if (edad < 18) {
+            Alert alertaError = new Alert(Alert.AlertType.ERROR);
+            alertaError.setTitle("Error de Validación");
+            alertaError.setHeaderText(null);
+            alertaError.setContentText("El cliente debe ser mayor de edad (18+ años) para registrarse.");
+            alertaError.showAndWait();
+            return;
+        }
+
+
         StringBuilder servicios = new StringBuilder();
         if (chkInternet.isSelected()) servicios.append("Internet ");
         if (chkCable.isSelected()) servicios.append("Cable TV ");
         if (chkTelefonia.isSelected()) servicios.append("Telefonía ");
 
-        // 3. Determinar tipo de solicitud
+
         RadioButton seleccionado = (RadioButton) grupoSolicitud.getSelectedToggle();
         String tipoSolicitud = seleccionado != null ? seleccionado.getText() : "Nuevo";
 
-        // 4. Crear objeto Cliente importando la clase desde su paquete correspondiente
+
         ni.edu.uam.practica16_9.model.Cliente nuevoCliente = new ni.edu.uam.practica16_9.model.Cliente(
                 txtNombres.getText().trim(),
                 txtApellidos.getText().trim(),
@@ -107,17 +143,17 @@ public class RegistroController {
                 tipoSolicitud,
                 servicios.toString().trim(),
                 rutaImagenSeleccionada,
-                dpFechaNacimiento.getValue()
+                fechaSeleccionada
         );
 
-        // 5. Agregarlo al repositorio global de Raúl
+
         ni.edu.uam.practica16_9.repository.DataRepository.getClientes().add(nuevoCliente);
 
-        // 6. Alerta de éxito y limpieza
+
         Alert alertaExito = new Alert(Alert.AlertType.INFORMATION);
         alertaExito.setTitle("Éxito");
         alertaExito.setHeaderText(null);
-        alertaExito.setContentText("Cliente registrado correctamente y enviado al menú principal.");
+        alertaExito.setContentText("Cliente registrado correctamente.");
         alertaExito.showAndWait();
 
         limpiarFormulario(null);
@@ -135,10 +171,10 @@ public class RegistroController {
         alerta.setContentText("¿Estás seguro que deseas regresar? Se perderán los datos no guardados.");
 
         if (alerta.showAndWait().get() == ButtonType.OK) {
-            // Captura la ventana actual sin depender de un botón específico
+
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
 
-            // Usa el método centralizado de Raúl para ir al menú
+          
             ni.edu.uam.practica16_9.application.MainApp.cambiarVentana(stage, "/ni/edu/uam/practica16_9/view/main-menu-view.fxml", "Menú Principal");
         }
     }
