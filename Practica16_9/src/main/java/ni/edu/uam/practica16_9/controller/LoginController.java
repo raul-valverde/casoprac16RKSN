@@ -25,6 +25,7 @@ public class LoginController {
     @FXML
     private PasswordField txtPassword;
 
+
     //evento ActionEvent para el botón de Iniciar Sesión
     @FXML
     private void onIniciarSesionClick(ActionEvent event) {
@@ -58,7 +59,7 @@ public class LoginController {
         String usuario = txtUsuario.getText() != null ? txtUsuario.getText().trim() : "";
         String password = txtPassword.getText() != null ? txtPassword.getText().trim() : "";
 
-        //validar que los campos no estén vacíos
+        // validar campos vacíos
         if (usuario.isEmpty() || password.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Campos Incompletos");
@@ -68,8 +69,16 @@ public class LoginController {
             return;
         }
 
-        //simulación de validación exitosa y apertura de Ventana Principal
-        abrirVentanaPrincipal(eventSource);
+        // validacion de credenciales
+        if (usuario.equals("admin") && password.equals("1234")) {
+            abrirVentanaPrincipal(eventSource);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error de Autenticación");
+            alert.setHeaderText("Credenciales Incorrectas");
+            alert.setContentText("El usuario o la contraseña son incorrectos.");
+            alert.showAndWait();
+        }
     }
 
     private void abrirVentanaPrincipal(Object eventSource) {
@@ -93,7 +102,7 @@ public class LoginController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error de Navegación");
             alert.setHeaderText("No se pudo cargar la ventana principal");
-            alert.setContentText("Asegúrese de que la vista FXML existe.");
+            alert.setContentText("Asegúrese de que el archivo main-menu-view.fxml existe en la carpeta view.");
             alert.showAndWait();
             e.printStackTrace();
         }
