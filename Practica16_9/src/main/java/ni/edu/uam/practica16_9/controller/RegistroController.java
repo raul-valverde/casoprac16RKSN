@@ -69,18 +69,6 @@ public class RegistroController {
         imgFoto.setImage(null);
     }
 
-    @FXML
-    void cancelarRegistro(ActionEvent event) {
-        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-        alerta.setTitle("Confirmar");
-        alerta.setHeaderText(null);
-        alerta.setContentText("¿Estás seguro que deseas cancelar? Se perderán los datos.");
-
-        if (alerta.showAndWait().get() == ButtonType.OK) {
-            System.out.println("Regresando al menú principal...");
-            // NavigationManager.getInstance().mostrarMenuPrincipal(); // Se descomentará después
-        }
-    }
 
     @FXML
     void guardarRegistro(ActionEvent event) {
@@ -103,4 +91,23 @@ public class RegistroController {
 
         limpiarFormulario(null);
     }
+
+    @FXML
+    public void accionSalir() {
+        javafx.application.Platform.exit();
+    }
+    @FXML
+    public void accionRegresar(javafx.event.ActionEvent event){
+        try {
+        // IMPORTANTE: Cambia "menu-view.fxml" por el nombre real de tu archivo del menú
+        javafx.fxml.FXMLLoader fxmlLoader = new javafx.fxml.FXMLLoader(getClass().getResource("menu-view.fxml"));
+        javafx.scene.Scene scene = new javafx.scene.Scene(fxmlLoader.load());
+
+        // Obtiene la ventana actual y le pone la nueva escena del menú
+        javafx.stage.Stage stage = (javafx.stage.Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    } catch (java.io.IOException e) {
+        e.printStackTrace();
+    }}
 }
