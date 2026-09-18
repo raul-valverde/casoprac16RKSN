@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane onKeyPressed="#onKeyPressedEsc" prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ni.edu.uam.practica16_9.controller.MainMenuController">
+    <top>
+        <VBox spacing="5.0" BorderPane.alignment="CENTER">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu text="Navegación">
+                            <items>
+                                <MenuItem text="Registro de Cliente" onAction="#irRegistro" />
+                                <MenuItem text="Consulta de Clientes" onAction="#irConsulta" />
+                            </items>
+                        </Menu>
+                        <Menu text="Herramientas">
+                            <items>
+                                <MenuItem text="Seleccionar Carpeta" onAction="#seleccionarCarpeta" />
+                            </items>
+                        </Menu>
+                        <Menu text="Sesión">
+                            <items>
+                                <MenuItem text="Cerrar Sesión" onAction="#cerrarSesion" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+
+                <ToolBar>
+                    <items>
+                        <Button onAction="#irRegistro" text=" Registrar Cliente" />
+                        <Button onAction="#irConsulta" text=" Consultar Clientes" />
+                        <Button onAction="#seleccionarCarpeta" text=" Elegir Carpeta" />
+                        <Button onAction="#cerrarSesion" text=" Salir" />
+                    </items>
+                </ToolBar>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <VBox alignment="CENTER" spacing="15.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <children>
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Bienvenido al Sistema de Gestión de Clientes" />
+                <Label fx:id="lblEstadoCarpeta" style="-fx-font-style: italic; -fx-text-fill: #555555;" text="Ninguna carpeta seleccionada" />
+
+                <VBox fx:id="panelContextual" alignment="CENTER" onMouseClicked="#onPanelClicked" prefHeight="120.0" prefWidth="350.0" style="-fx-border-color: #cccccc; -fx-border-dash-array: 5; -fx-background-color: #f9f9f9;">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Haz clic derecho sobre este recuadro" />
+                        <Label text="para desplegar el Información del Sistema" />
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
