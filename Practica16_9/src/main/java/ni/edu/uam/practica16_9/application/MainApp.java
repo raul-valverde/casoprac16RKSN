@@ -2,23 +2,31 @@ package ni.edu.uam.practica16_9.application;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class MainApp extends Application {
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
+        // La aplicación integrada debe arrancar en el Login
+        cambiarVentana(stage, "/ni/edu/uam/practica16_9/view/login-view.fxml", "Acceso al Sistema");
+    }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/ni/edu/uam/practica16_9/view/login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-
-        stage.setTitle("Sistema de Gestión - Inicio de Sesión");
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
+    public static Object cambiarVentana(Stage stage, String fxmlPath, String titulo) {
+        try {
+            FXMLLoader loader = new FXMLLoader(MainApp.class.getResource(fxmlPath));
+            Parent root = loader.load();
+            stage.setTitle(titulo);
+            stage.setScene(new Scene(root));
+            stage.centerOnScreen();
+            stage.show();
+            return loader.getController();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static void main(String[] args) {
