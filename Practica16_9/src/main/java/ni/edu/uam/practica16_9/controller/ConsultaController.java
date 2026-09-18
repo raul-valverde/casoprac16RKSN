@@ -1,6 +1,6 @@
 package ni.edu.uam.practica16_9.controller;
 
-import ni.edu.uam.practica16_9.appplication.MainApp;
+import ni.edu.uam.practica16_9.application.MainApp;
 import ni.edu.uam.practica16_9.model.Cliente;
 import ni.edu.uam.practica16_9.repository.DataRepository;
 import javafx.beans.property.SimpleStringProperty;
