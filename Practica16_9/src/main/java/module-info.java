@@ -3,17 +3,13 @@ module ni.edu.uam.practica16_9 {
     requires javafx.fxml;
     requires static lombok;
 
-    // Permisos FXML para controladores y vistas de todo el equipo
-    opens ni.edu.uam.practica16_9 to javafx.fxml;
-    opens ni.edu.uam.practica16_9.application to javafx.fxml;
+    opens ni.edu.uam.practica16_9.application to javafx.graphics, javafx.fxml;
     opens ni.edu.uam.practica16_9.controller to javafx.fxml;
-
-    // Permiso para que TableView lea los datos del modelo
     opens ni.edu.uam.practica16_9.model to javafx.base, javafx.fxml;
 
-    // Exportación de paquetes compartidos
     exports ni.edu.uam.practica16_9;
     exports ni.edu.uam.practica16_9.application;
     exports ni.edu.uam.practica16_9.controller;
     exports ni.edu.uam.practica16_9.model;
+    exports ni.edu.uam.practica16_9.repository;
 }

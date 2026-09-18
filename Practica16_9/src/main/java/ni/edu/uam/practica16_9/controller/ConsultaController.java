@@ -56,11 +56,6 @@ public class ConsultaController {
         volverAlMenu();
     }
 
-    private void volverAlMenu() {
-        Stage stage = (Stage) tabla.getScene().getWindow();
-        MainApp.cambiarVentana(stage, "/ni/edu/uam/practica16_9/view/MainView.fxml", "Menú Principal");
-    }
-
     @FXML
     public void onTablaClick(MouseEvent event) {
         if (event.getClickCount() == 2 && tabla.getSelectionModel().getSelectedItem() != null) {
@@ -68,12 +63,18 @@ public class ConsultaController {
         }
     }
 
+    private void volverAlMenu() {
+        Stage stage = (Stage) tabla.getScene().getWindow();
+        // Cambiar /MainView.fxml por /main-menu-view.fxml
+        MainApp.cambiarVentana(stage, "/ni/edu/uam/practica16_9/view/main-menu-view.fxml", "Menú Principal");
+    }
+
     private void abrirDetalle(Cliente cliente) {
         try {
+            // Asegurarse de que el FXML de detalle esté nombrado como detalle-view.fxml en la carpeta view
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ni/edu/uam/practica16_9/view/DetalleView.fxml"));
             Parent root = loader.load();
 
-            // Paso de datos al controlador receptor
             DetalleController controller = loader.getController();
             controller.setCliente(cliente);
 
