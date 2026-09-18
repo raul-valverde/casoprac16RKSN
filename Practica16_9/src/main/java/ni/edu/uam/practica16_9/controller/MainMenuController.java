@@ -14,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import ni.edu.uam.practica16_9.appplication.MainApp;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,16 +25,19 @@ public class MainMenuController {
     @FXML
     private Label lblEstadoCarpeta;
 
-    // --- NAVEGACIÓN (ActionEvent) ---
+
 
     @FXML
     private void irRegistro(ActionEvent event) {
-        cambiarVentana(event, "/ni/edu/uam/practica16_9/view/registro-view.fxml", "Registro de Cliente");
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        MainApp.cambiarVentana(stage, "/ni/edu/uam/practica16_9/view/registro-view.fxml", "Registro de Cliente");
     }
 
     @FXML
     private void irConsulta(ActionEvent event) {
-        cambiarVentana(event, "/ni/edu/uam/practica16_9/view/consulta-view.fxml", "Consulta de Clientes");
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        MainApp.cambiarVentana(stage, "/ni/edu/uam/practica16_9/view/consulta-view.fxml", "Consulta de Clientes");
     }
 
     @FXML
@@ -49,7 +53,7 @@ public class MainMenuController {
         }
     }
 
-    // --- REQUISITO: DirectoryChooser ---
+
 
     @FXML
     private void seleccionarCarpeta(ActionEvent event) {
@@ -72,7 +76,7 @@ public class MainMenuController {
         }
     }
 
-    // --- REQUISITO: ContextMenu ---
+
 
     @FXML
     private void mostrarInfoContextual(ActionEvent event) {
@@ -83,7 +87,7 @@ public class MainMenuController {
         dialog.showAndWait();
     }
 
-    // --- REQUISITO: MouseEvent ---
+
 
     @FXML
     private void onPanelClicked(MouseEvent event) {
@@ -114,7 +118,7 @@ public class MainMenuController {
         }
     }
 
-    // --- MÉTODOS AUXILIARES DE CAMBIO DE ESCENA ---
+
 
     private void cambiarVentana(ActionEvent event, String fxmlPath, String titulo) {
         Node source = (Node) event.getSource();
