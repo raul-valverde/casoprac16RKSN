@@ -1,4 +1,4 @@
-package ni.edu.uam.practica16_9.appplication;
+package ni.edu.uam.practica16_9.application;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
