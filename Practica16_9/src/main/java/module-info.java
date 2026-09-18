@@ -1,4 +1,3 @@
-package ni.edu.uam.practica16_9.application;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,30 +5,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MainApp extends Application {
+module ni.edu.uam.practica16_9 {
+    requires javafx.controls;
+    requires javafx.fxml;
+    requires static lombok;
 
-    @Override
-    public void start(Stage stage) {
-        // La aplicación integrada debe arrancar en el Login
-        cambiarVentana(stage, "/ni/edu/uam/practica16_9/view/login-view.fxml", "Acceso al Sistema");
-    }
+    opens ni.edu.uam.practica16_9.application to javafx.graphics, javafx.fxml;
+    opens ni.edu.uam.practica16_9.controller to javafx.fxml;
+    opens ni.edu.uam.practica16_9.model to javafx.base, javafx.fxml;
 
-    public static Object cambiarVentana(Stage stage, String fxmlPath, String titulo) {
-        try {
-            FXMLLoader loader = new FXMLLoader(MainApp.class.getResource(fxmlPath));
-            Parent root = loader.load();
-            stage.setTitle(titulo);
-            stage.setScene(new Scene(root));
-            stage.centerOnScreen();
-            stage.show();
-            return loader.getController();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
+    exports ni.edu.uam.practica16_9;
+    exports ni.edu.uam.practica16_9.application;
+    exports ni.edu.uam.practica16_9.controller;
+    exports ni.edu.uam.practica16_9.model;
+    exports ni.edu.uam.practica16_9.repository;
 }
