@@ -1,11 +1,11 @@
 package ni.edu.uam.practica16_9.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-
-@Getter
-@Setter
+//En este caso se remueve getter y setter pq Data ya los contiene dentro y mejroa la estetica y orden del programa
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
