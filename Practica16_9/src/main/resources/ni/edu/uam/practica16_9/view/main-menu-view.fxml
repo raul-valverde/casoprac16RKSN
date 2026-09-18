@@ -12,18 +12,19 @@
                     <menus>
                         <Menu text="Navegación">
                             <items>
-                                <MenuItem onAction="#irRegistro" text="Registro de Cliente" />
-                                <MenuItem onAction="#irConsulta" text="Consulta de Clientes" />
+                                
+                                <MenuItem text="Registro de Cliente" onAction="#irRegistro" />
+                                <MenuItem text="Consulta de Clientes" onAction="#irConsulta" />
                             </items>
                         </Menu>
                         <Menu text="Herramientas">
                             <items>
-                                <MenuItem onAction="#seleccionarCarpeta" text="Seleccionar Carpeta" />
+                                <MenuItem text="Seleccionar Carpeta" onAction="#seleccionarCarpeta" />
                             </items>
                         </Menu>
                         <Menu text="Sesión">
                             <items>
-                                <MenuItem onAction="#cerrarSesion" text="Cerrar Sesión" />
+                                <MenuItem text="Cerrar Sesión" onAction="#cerrarSesion" />
                             </items>
                         </Menu>
                     </menus>
