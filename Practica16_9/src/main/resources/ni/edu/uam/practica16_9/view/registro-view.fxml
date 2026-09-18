@@ -48,10 +48,11 @@
             <ImageView fx:id="imgFoto" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" style="-fx-border-color: #ccc;"/>
         </HBox>
 
-        <HBox spacing="15.0" alignment="CENTER" style="-fx-padding: 30 0 0 0;">
-            <Button fx:id="btnGuardar" text="Guardar" prefWidth="100.0" onAction="#guardarRegistro"/>
-            <Button fx:id="btnLimpiar" text="Limpiar" prefWidth="100.0" onAction="#limpiarFormulario"/>
-            <Button fx:id="btnCancelar" text="Cancelar" prefWidth="100.0" onAction="#cancelarRegistro"/>
+        <HBox alignment="CENTER" spacing="15.0" style="-fx-padding: 20;">
+            <Button text="Guardar" onAction="#guardarRegistro"/>
+            <Button text="Limpiar" onAction="#limpiarFormulario"/>
+            <Button text="Regresar al Menú" onAction="#accionRegresar"/>
+            <Button text="Salir" onAction="#accionSalir"/>
         </HBox>
     </VBox>
 </AnchorPane>
