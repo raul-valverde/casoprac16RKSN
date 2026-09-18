@@ -1,3 +1,10 @@
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 module ni.edu.uam.practica16_9 {
     requires javafx.controls;
     requires javafx.fxml;
