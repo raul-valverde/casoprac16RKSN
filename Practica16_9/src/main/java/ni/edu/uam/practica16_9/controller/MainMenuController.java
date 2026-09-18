@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import ni.edu.uam.practica16_9.appplication.MainApp;
+import ni.edu.uam.practica16_9.application.MainApp;
 
 import java.io.File;
 import java.io.IOException;
