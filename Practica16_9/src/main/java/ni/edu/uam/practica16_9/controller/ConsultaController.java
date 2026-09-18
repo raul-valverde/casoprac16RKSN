@@ -1,5 +1,6 @@
 package ni.edu.uam.practica16_9.controller;
 
+import ni.edu.uam.practica16_9.MainApp;
 import ni.edu.uam.practica16_9.model.Cliente;
 import ni.edu.uam.practica16_9.repository.DataRepository;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -32,6 +35,24 @@ public class ConsultaController {
         colSolicitud.setCellValueFactory(new PropertyValueFactory<>("tipoSolicitud"));
 
         tabla.setItems(DataRepository.getClientes());
+    }
+
+    // Evento de Teclado (KeyEvent)
+    @FXML
+    public void onKeyPressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.ESCAPE) {
+            volverAlMenu();
+        }
+    }
+
+    @FXML
+    public void volver(ActionEvent event) {
+        volverAlMenu();
+    }
+
+    private void volverAlMenu() {
+        Stage stage = (Stage) tabla.getScene().getWindow();
+        MainApp.cambiarVentana(stage, "/ni/edu/uam/practica16_9/view/MainView.fxml", "Menú Principal");
     }
 
     @FXML
@@ -56,10 +77,5 @@ public class ConsultaController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    public void volver(ActionEvent event) {
-        // Método listo para vincular la navegación de regreso al menú principal
     }
 }
