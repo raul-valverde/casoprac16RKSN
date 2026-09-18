@@ -11,7 +11,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) {
         // La aplicación integrada debe arrancar en el Login
-        cambiarVentana(stage, "/ni/edu/uam/practica16_9/view/LoginView.fxml", "Acceso al Sistema");
+        cambiarVentana(stage, "/ni/edu/uam/practica16_9/view/login-view.fxml", "Acceso al Sistema");
     }
 
     public static Object cambiarVentana(Stage stage, String fxmlPath, String titulo) {
