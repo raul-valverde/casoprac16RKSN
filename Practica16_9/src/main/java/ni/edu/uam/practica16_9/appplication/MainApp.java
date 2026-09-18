@@ -17,7 +17,7 @@ public class MainApp extends Application {
 
         stage.setTitle("Sistema de Gestión - Inicio de Sesión");
         stage.setScene(scene);
-        stage.setResizable(false); //evita que deformemos la ventana
+        stage.setResizable(false);
         stage.show();
     }
 
