@@ -99,7 +99,7 @@ public class RegistroController {
         String tipoSolicitud = seleccionado != null ? seleccionado.getText() : "Nuevo";
 
         // 4. Crear objeto Cliente importando la clase desde su paquete correspondiente
-        ni.edu.uam.practica16_9.model.cliente.Cliente nuevoCliente = new ni.edu.uam.practica16_9.model.cliente.Cliente(
+        ni.edu.uam.practica16_9.model.Cliente nuevoCliente = new ni.edu.uam.practica16_9.model.Cliente(
                 txtNombres.getText().trim(),
                 txtApellidos.getText().trim(),
                 cmbTipoCliente.getValue(),
