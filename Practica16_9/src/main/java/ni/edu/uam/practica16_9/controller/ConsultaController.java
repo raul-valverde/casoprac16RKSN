@@ -1,6 +1,6 @@
 package ni.edu.uam.practica16_9.controller;
 
-import ni.edu.uam.practica16_9.MainApp;
+import ni.edu.uam.practica16_9.appplication.MainApp;
 import ni.edu.uam.practica16_9.model.Cliente;
 import ni.edu.uam.practica16_9.repository.DataRepository;
 import javafx.beans.property.SimpleStringProperty;
@@ -28,16 +28,22 @@ public class ConsultaController {
 
     @FXML
     public void initialize() {
+        // Vinculación de columnas
         colNombre.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getNombreCompleto()));
         colTipo.setCellValueFactory(new PropertyValueFactory<>("tipoCliente"));
         colCiudad.setCellValueFactory(new PropertyValueFactory<>("ciudad"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
         colSolicitud.setCellValueFactory(new PropertyValueFactory<>("tipoSolicitud"));
 
+        // Carga de datos de prueba si la lista está vacía
+        if (DataRepository.getClientes().isEmpty()) {
+            DataRepository.getClientes().add(new Cliente("Raúl", "Pérez", "VIP", "Managua", "Soporte", "Desarrollo", "", LocalDate.of(1999, 4, 15)));
+            DataRepository.getClientes().add(new Cliente("Kellys", "López", "Regular", "León", "Consultoría", "Capacitación", "", LocalDate.of(2001, 8, 22)));
+        }
+
         tabla.setItems(DataRepository.getClientes());
     }
 
-    // Evento de Teclado (KeyEvent)
     @FXML
     public void onKeyPressed(KeyEvent event) {
         if (event.getCode() == KeyCode.ESCAPE) {
@@ -66,6 +72,8 @@ public class ConsultaController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ni/edu/uam/practica16_9/view/DetalleView.fxml"));
             Parent root = loader.load();
+
+            // Paso de datos al controlador receptor
             DetalleController controller = loader.getController();
             controller.setCliente(cliente);
 
