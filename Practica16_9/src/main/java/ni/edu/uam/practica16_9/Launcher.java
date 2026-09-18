@@ -1,9 +1,9 @@
 package ni.edu.uam.practica16_9;
 
-import javafx.application.Application;
+import ni.edu.uam.practica16_9.appplication.MainApp;
 
 public class Launcher {
     public static void main(String[] args) {
-        Application.launch(HelloApplication.class, args);
+        MainApp.main(args);
     }
 }
