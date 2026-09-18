@@ -12,7 +12,6 @@
                     <menus>
                         <Menu text="Navegación">
                             <items>
-                                
                                 <MenuItem text="Registro de Cliente" onAction="#irRegistro" />
                                 <MenuItem text="Consulta de Clientes" onAction="#irConsulta" />
                             </items>

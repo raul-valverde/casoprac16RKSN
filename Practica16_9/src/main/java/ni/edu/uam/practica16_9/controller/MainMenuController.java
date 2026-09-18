@@ -63,13 +63,13 @@ public class MainMenuController {
 
     @FXML
     private void irRegistro(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = obtenerStage(event);
         MainApp.cambiarVentana(stage, "/ni/edu/uam/practica16_9/view/registro-view.fxml", "Registro de Cliente");
     }
 
     @FXML
     private void irConsulta(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = obtenerStage(event);
         MainApp.cambiarVentana(stage, "/ni/edu/uam/practica16_9/view/consulta-view.fxml", "Consulta de Clientes");
     }
 
@@ -91,9 +91,7 @@ public class MainMenuController {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Seleccionar carpeta de trabajo");
 
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-
+        Stage stage = obtenerStage(event);
         File carpetaSeleccionada = directoryChooser.showDialog(stage);
 
         if (carpetaSeleccionada != null) {
@@ -127,8 +125,6 @@ public class MainMenuController {
         }
     }
 
-
-
     @FXML
     private void onKeyPressedEsc(KeyEvent event) {
         if (event.getCode() == KeyCode.ESCAPE) {
@@ -139,16 +135,25 @@ public class MainMenuController {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Stage stage = (Stage) panelContextual.getScene().getWindow();
                 cargarEscena(stage, "/ni/edu/uam/practica16_9/view/login-view.fxml", "Inicio de Sesión");
             }
         }
     }
 
     private void cambiarVentana(ActionEvent event, String fxmlPath, String titulo) {
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
+        Stage stage = obtenerStage(event);
         cargarEscena(stage, fxmlPath, titulo);
+    }
+
+    private Stage obtenerStage(ActionEvent event) {
+        Object source = event.getSource();
+        if (source instanceof Node node) {
+            return (Stage) node.getScene().getWindow();
+        } else if (source instanceof MenuItem menuItem && menuItem.getParentPopup() != null) {
+            return (Stage) menuItem.getParentPopup().getOwnerWindow();
+        }
+        return (Stage) panelContextual.getScene().getWindow();
     }
 
     private void cargarEscena(Stage stage, String fxmlPath, String titulo) {
