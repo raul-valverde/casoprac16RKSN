@@ -34,15 +34,31 @@ public class MainMenuController {
     @FXML
     public void initialize() {
         ContextMenu contextMenu = new ContextMenu();
-        MenuItem itemInfo = new MenuItem("Mostrar Información del Sistema");
-        itemInfo.setOnAction(this::mostrarInfoContextual);
-        contextMenu.getItems().add(itemInfo);
+
+        MenuItem itemResumen = new MenuItem("Ver Resumen del Sistema");
+        itemResumen.setOnAction(e -> mostrarInfoContextual());
+
+        contextMenu.getItems().add(itemResumen);
 
         if (panelContextual != null) {
             panelContextual.setOnContextMenuRequested(event ->
                     contextMenu.show(panelContextual, event.getScreenX(), event.getScreenY())
             );
         }
+    }
+
+    @FXML
+    private void mostrarInfoContextual() {
+        Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+        dialog.setTitle("Resumen del Sistema");
+        dialog.setHeaderText("Módulo de Gestión de Clientes y Solicitudes");
+        dialog.setContentText(
+                "Estado del Sistema:\n" +
+                        "• Módulo Principal: Activo\n" +
+                        "• Base de Datos: Conectada\n" +
+                        "• Permisos: Registro y Consulta habilitados"
+        );
+        dialog.showAndWait();
     }
 
     @FXML
@@ -111,7 +127,7 @@ public class MainMenuController {
         }
     }
 
-    // --- REQUISITO: KeyEvent ---
+
 
     @FXML
     private void onKeyPressedEsc(KeyEvent event) {
